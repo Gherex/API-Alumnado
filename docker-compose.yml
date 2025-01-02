@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app_alumnado:
+    build: alumnado
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:mysql://alumnado:3306/alumnado?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USERNAME: root
+      DB_PASSWORD: imreg091194
+    restart: always
+    depends_on:
+      alumnado:
+        condition: service_healthy
+  alumnado:
+    image: mysql:8.0.33
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: imreg091194
+      MYSQL_PASSWORD: imreg091194
+      MYSQL_DATABASE: alumnado
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+
