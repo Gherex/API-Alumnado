@@ -48,7 +48,7 @@ public class JwtUtil {
         // Generamos la clave de 256 bits aquí también
         Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes()); // Aseguramos que la clave sea suficientemente fuerte para HS256
 
-        return Jwts.parserBuilder()
+        return Jwts.parser()
                 .setSigningKey(key) // Usamos la clave generada para verificar la firma del token
                 .build()
                 .parseClaimsJws(token) // Parsear el token
