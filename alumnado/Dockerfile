@@ -1,5 +1,5 @@
-# Usa una imagen base con Java
-FROM openjdk:17-jdk-slim
+# Usa una imagen base con Java 21
+FROM openjdk:21-jdk-slim
 # Define un argumento para el archivo .jar
 ARG JAR_FILE=target/alumnado-0.0.1.jar
 # Copia el archivo .jar al contenedor
