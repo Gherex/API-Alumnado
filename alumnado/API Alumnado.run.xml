@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="API Alumnado" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Eclipse Adoptium/jdk-21.0.5.11-hotspot" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="DB_URL" value="jdbc:mysql://localhost:3306/alumnado?createDatabaseIfNotExist=true&amp;serverTimezone=UTC" />
+      <env name="DB_USERNAME" value="root" />
+      <env name="DB_PASSWORD" value="imreg091194" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.gherex.alumnado.AlumnadoApplication" />
+    <module name="alumnado" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/alumnado" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
