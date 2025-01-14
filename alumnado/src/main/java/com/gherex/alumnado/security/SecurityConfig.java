@@ -24,26 +24,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Desactiva CSRF
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF porque estamos usando una API REST
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Configuración de CORS
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/alumnos/**").permitAll()
-                        .requestMatchers("/profesores/**").permitAll()
-                        .requestMatchers("/materias/**").permitAll()
-                        .requestMatchers("/inscripciones/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/alumnos/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/alumnos/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/alumnos/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/profesores/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/profesores/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/profesores/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/materias/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/materias/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/materias/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/inscripciones/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/inscripciones/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/inscripciones/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/alumnos/**", "/profesores/**", "/materias/**", "/inscripciones/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/alumnos/**", "/profesores/**", "/materias/**", "/inscripciones/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/alumnos/**", "/profesores/**", "/materias/**", "/inscripciones/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/alumnos/**", "/profesores/**", "/materias/**", "/inscripciones/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Filtro JWT
@@ -54,9 +42,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://tu-dominio-en-produccion.com"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://alumnado-de-gherex.netlify.app"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept", "Origin"));
         configuration.setAllowCredentials(true); // Permitir el envío de cookies o credenciales
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
