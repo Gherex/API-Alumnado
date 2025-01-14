@@ -12,7 +12,8 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**") // Aplica CORS a todas las rutas
                 .allowedOrigins(
                         "https://alumnado-de-gherex.netlify.app", // Dominio del frontend
-                        "http://localhost:5173" // Dominio local para pruebas
+                        "http://localhost:5173", // Dominio local para pruebas
+                        "http://localhost:5174"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
                 .allowedHeaders("*") // Permitir todos los encabezados
