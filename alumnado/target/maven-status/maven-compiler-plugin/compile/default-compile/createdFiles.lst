@@ -1,6 +1,5 @@
 com\gherex\alumnado\service\InscripcionService.class
 com\gherex\alumnado\service\AlumnoService.class
-com\gherex\alumnado\security\CorsConfig.class
 com\gherex\alumnado\controller\AuthController.class
 com\gherex\alumnado\controller\ProfesorController.class
 com\gherex\alumnado\entity\Alumno.class
