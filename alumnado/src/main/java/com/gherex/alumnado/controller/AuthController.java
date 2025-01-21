@@ -17,8 +17,12 @@ public class AuthController {
     @Value("${app.password.hash}")
     private String storedHashedPassword;
 
+    @Value("${app.cookie.secure}")
+    private boolean cookieSecure;
+
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+
 
     public AuthController(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
@@ -33,7 +37,7 @@ public class AuthController {
             String token = jwtUtil.generateToken(username, "ADMIN");
             Cookie cookie = new Cookie("JWT", token);
             cookie.setHttpOnly(true);
-            cookie.setSecure(true);
+            cookie.setSecure(cookieSecure); // Cambia dinámicamente
             cookie.setPath("/");
             cookie.setMaxAge(3600);
 

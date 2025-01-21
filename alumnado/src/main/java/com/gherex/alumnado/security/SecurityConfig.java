@@ -43,9 +43,12 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Permitir todos los orígenes localhost dinámicamente
+        // Permitir orígenes localhost
         configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:*", // Esto incluye cualquier puerto para localhost
+                "http://localhost:5173",
+                "http://localhost:5174",
+                "http://localhost:5175",
+                "http://localhost:5176",
                 "https://alumnado-de-gherex.netlify.app"
         ));
 
