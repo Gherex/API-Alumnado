@@ -6,13 +6,12 @@ com\gherex\alumnado\controller\ProfesorController.class
 com\gherex\alumnado\entity\Alumno.class
 com\gherex\alumnado\security\JwtAuthenticationManager.class
 com\gherex\alumnado\security\JwtUtil.class
-com\gherex\alumnado\security\PasswordValidator.class
-com\gherex\alumnado\security\SecurityConfig.class
 com\gherex\alumnado\service\ProfesorServiceImpl.class
 com\gherex\alumnado\service\InscripcionServiceImpl.class
 com\gherex\alumnado\controller\MateriaController.class
 com\gherex\alumnado\entity\Profesor.class
 com\gherex\alumnado\service\MateriaService.class
+com\gherex\alumnado\security\UserDetailsServiceImpl.class
 com\gherex\alumnado\security\JwtFilter.class
 com\gherex\alumnado\entity\Materia.class
 com\gherex\alumnado\service\AlumnoServiceImpl.class
@@ -26,5 +25,6 @@ com\gherex\alumnado\repository\MateriaRepository.class
 com\gherex\alumnado\repository\ProfesorRepository.class
 com\gherex\alumnado\security\JwtAuthenticationToken.class
 com\gherex\alumnado\entity\Persona.class
+com\gherex\alumnado\config\SecurityConfig.class
 com\gherex\alumnado\entity\Inscripcion.class
 com\gherex\alumnado\repository\InscripcionRepository.class

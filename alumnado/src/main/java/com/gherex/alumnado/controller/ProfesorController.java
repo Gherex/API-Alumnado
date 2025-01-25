@@ -25,7 +25,6 @@ public class ProfesorController {
 
     // Obtener todos los profesores
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver todos los profesores
     public ResponseEntity<List<Profesor>> getAllProfesores() {
         List<Profesor> profesores = profesorService.getAllProfesores();
         if (profesores.isEmpty()) {
@@ -36,7 +35,6 @@ public class ProfesorController {
 
     // Obtener un profesor por su ID
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver un profesor
     public ResponseEntity<?> getProfesorById(@PathVariable Integer id) {
         Profesor profesor = profesorService.getProfesorById(id);
         if (profesor != null) {

@@ -8,30 +8,23 @@ import java.util.Collection;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
-    private final UserDetails principal; // El usuario autenticado
+    private final UserDetails principal; // Información del usuario (e.g., nombre de usuario, roles)
     private final String token; // El token JWT
 
     public JwtAuthenticationToken(UserDetails principal, String token, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
         this.token = token;
-        setAuthenticated(true); // Este token ya está autenticado
-    }
-
-    public JwtAuthenticationToken(UserDetails principal) {
-        super(null);
-        this.principal = principal;
-        this.token = null;
-        setAuthenticated(false); // Token no autenticado
+        this.setAuthenticated(true); // Marcamos este token como autenticado
     }
 
     @Override
     public Object getCredentials() {
-        return token; // El token JWT como credencial
+        return token; // El JWT se considera como las credenciales
     }
 
     @Override
     public Object getPrincipal() {
-        return principal; // El usuario autenticado
+        return principal; // La información del usuario autenticado
     }
 }

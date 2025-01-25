@@ -1,4 +1,5 @@
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\AlumnadoApplication.java
+C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\config\SecurityConfig.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\controller\AlumnoController.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\controller\AuthController.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\controller\AuthRequest.java
@@ -18,8 +19,7 @@ C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\security\JwtAuthenticationToken.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\security\JwtFilter.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\security\JwtUtil.java
-C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\security\PasswordValidator.java
-C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\security\SecurityConfig.java
+C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\security\UserDetailsServiceImpl.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\service\AlumnoService.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\service\AlumnoServiceImpl.java
 C:\Users\germi\OneDrive\Escritorio\Java Projects\alumnado\alumnado\src\main\java\com\gherex\alumnado\service\InscripcionService.java

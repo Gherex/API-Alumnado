@@ -25,7 +25,6 @@ public class AlumnoController {
 
     // Obtener todos los alumnos
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver todos los alumnos
     public ResponseEntity<List<Alumno>> getAllAlumnos() {
         List<Alumno> alumnos = alumnoService.getAllAlumnos();
         if (alumnos.isEmpty()) {
@@ -36,7 +35,6 @@ public class AlumnoController {
 
     // Obtener un alumno por su ID
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver un alumno
     public ResponseEntity<?> getAlumnoById(@PathVariable Integer id) {
         Alumno alumno = alumnoService.getAlumnoById(id);
         if (alumno != null) {

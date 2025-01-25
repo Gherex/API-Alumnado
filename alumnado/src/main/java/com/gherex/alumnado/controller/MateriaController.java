@@ -25,7 +25,6 @@ public class MateriaController {
 
     // Obtener todas las materias
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver todas las materias
     public ResponseEntity<List<Materia>> getAllMaterias() {
         List<Materia> materias = materiaService.getAllMaterias();
         if (materias.isEmpty()) {
@@ -36,7 +35,6 @@ public class MateriaController {
 
     // Obtener una materia por su ID
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver una materia
     public ResponseEntity<?> getMateriaById(@PathVariable Integer id) {
         Materia materia = materiaService.getMateriaById(id);
         if (materia != null) {

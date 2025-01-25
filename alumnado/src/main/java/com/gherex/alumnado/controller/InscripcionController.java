@@ -25,7 +25,6 @@ public class InscripcionController {
 
     // Obtener todas las inscripciones
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver todas las inscripciones
     public ResponseEntity<List<Inscripcion>> getAllInscripciones() {
         List<Inscripcion> inscripciones = inscripcionService.getAllInscripciones();
         if (inscripciones.isEmpty()) {
@@ -36,7 +35,6 @@ public class InscripcionController {
 
     // Obtener una inscripción por su ID
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") // Permite a ADMIN y USER ver una inscripción
     public ResponseEntity<?> getInscripcionById(@PathVariable Integer id) {
         Inscripcion inscripcion = inscripcionService.getInscripcionById(id);
         if (inscripcion != null) {
