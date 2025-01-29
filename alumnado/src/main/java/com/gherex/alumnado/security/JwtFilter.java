@@ -6,13 +6,17 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -27,14 +31,12 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
-                                    @NonNull
-                                    HttpServletResponse response,
-                                    @NonNull
-                                    FilterChain filterChain) throws ServletException, IOException {
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
         String jwt = null;
         String username = null;
 
-        // Intentar obtener el token de la cookie
+        // Obtener token de la cookie
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if ("JWT".equals(cookie.getName())) {
@@ -45,7 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
-        // Si no hay cookie, intentar obtener el token del header Authorization
+        // Obtener token del header "Authorization"
         if (jwt == null) {
             final String authorizationHeader = request.getHeader("Authorization");
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
@@ -54,14 +56,22 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
-        // Validar el token y configurar la autenticación en el contexto
+        // Validar token y configurar autenticación
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
+                // Extraer roles del token y convertirlos en autoridades
+                List<String> roles = jwtUtil.extractRoles(jwt);
+                List<GrantedAuthority> authorities = roles == null ? Collections.emptyList() :
+                        roles.stream()
+                                .map(role -> new SimpleGrantedAuthority(role))
+                                .collect(Collectors.toList());
+
+                // Crear objeto de autenticación con autoridades del token
                 JwtAuthenticationToken authentication = new JwtAuthenticationToken(
                         userDetails,
                         jwt,
-                        userDetails.getAuthorities()
+                        authorities // Usar autoridades del token, no de UserDetails
                 );
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }

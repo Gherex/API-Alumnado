@@ -6,6 +6,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -23,13 +25,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        // Validar usuario y contraseña
         if ("admin".equals(username) && passwordEncoder.matches(password, storedPasswordHash)) {
-            // Generar el token
-            String token = jwtUtil.generateToken(username);
+            List<String> roles = List.of("ROLE_ADMIN"); // Asignar el rol ADMIN
+            String token = jwtUtil.generateToken(username, roles);
             return ResponseEntity.ok(token);
         }
-
-        return ResponseEntity.status(401).body("Credenciales inválidas");
+        return ResponseEntity.status(401).body("Usuario o contraseña incorrectos");
     }
 }
