@@ -7,9 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
     private final JwtUtil jwtUtil;
@@ -24,12 +25,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<Map<String, String>> login(
+            @RequestBody Map<String, String> credentials) {
+
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
         if ("admin".equals(username) && passwordEncoder.matches(password, storedPasswordHash)) {
-            List<String> roles = List.of("ROLE_ADMIN"); // Asignar el rol ADMIN
-            String token = jwtUtil.generateToken(username, roles);
-            return ResponseEntity.ok(token);
+            String token = jwtUtil.generateToken(username, List.of("ROLE_ADMIN"));
+            return ResponseEntity.ok().body(Map.of("token", token));
         }
-        return ResponseEntity.status(401).body("Usuario o contraseña incorrectos");
+        return ResponseEntity.status(401).body(Map.of("error", "Credenciales inválidas"));
     }
 }
