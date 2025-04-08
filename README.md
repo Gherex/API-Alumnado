@@ -76,9 +76,18 @@ Cada una con sus respectivas relaciones. Se usa `snake_case` en todas las tablas
    ```sh
    git clone https://github.com/Gherex/frontend-Alumnado.git
    ```
-2. Navegar al directorio del proyecto: cd frontend-Alumnado 
-3. Instalar las dependencias: npm install  
-4. Ejecutar en modo desarrollo: npm run dev 
+2. Navegar al directorio del proyecto:
+   ```sh
+   cd frontend-Alumnado
+   ``` 
+3. Instalar las dependencias:
+   ```sh
+   npm install
+   ```  
+4. Ejecutar en modo desarrollo:
+   ```sh
+   npm run dev
+   ``` 
 
 ⚠️ Asegurate de que la URL del backend esté bien configurada en los archivos de entorno o dentro del código para que el frontend pueda comunicarse con la API correctamente.
 
